@@ -1,0 +1,102 @@
+PLACE Language Implementation Plan
+-----------------------------------
+
+1) Read & Validate CLI
+Problem: Parse args, read file, write file, exit codes.
+Done when: python3 place.py a.txt a.ppm prints friendly errors or produces a file.
+
+2) Lexing (Tokens)
+Problem: Turn text into tokens (identifiers, numbers, in/out, not/and/or, ()[]=;, comments).
+Done when: A line like x = in[0] or in[1]; # hi yields the correct token sequence.
+Pitfalls: Comments, negative indices (reject), weird characters.
+
+3) Parsing (AST)
+Problem: Build an AST from tokens with explicit syntax (no precedence surprises).
+Done when:
+  - Valid: a = in[0] or in[1]; parses.
+  - Invalid: missing ;, bad out[], and/or with 1 operand (reject).
+Pitfalls: Parentheses, chaining and/or.
+Rule: Parenthesize subexpressions that are not atomic.
+
+4) Semantic Checks
+Problem: Enforce language rules.
+Done when:
+  - Using a name before it’s defined → error.
+  - Reassigning a name or out[k] → error.
+  - Using a target within its own assignment → error.
+Pitfalls: Shadowing, duplicate outputs.
+Note: Using out[k] on RHS is allowed *after* it’s defined.
+
+5) Netlist Build (DAG)
+Problem: Convert AST to nodes (IN, NOT, AND, OR, OUT) and edges (dependencies).
+Done when: Each assignment adds nodes/edges; inputs/outputs tracked.
+Pitfalls: Aliases (can skip WIRE nodes and forward references).
+
+6) Topological Order
+Problem: Order nodes so data flows left→right; detect cycles.
+Done when: Kahn/DFS returns an ordering for all nodes.
+Note: Cycles shouldn’t exist if semantics are correct.
+
+7) Placement
+Problem: Choose (x,y) for each node.
+  - Inputs at left border (even rows)
+  - Outputs at right border (even rows)
+  - Gates in the interior
+Done when: Every node has a unique coordinate; I/O on even rows.
+Strategy:
+  - Columns by topo-level (x = 2 + 3*level)
+  - Rows spaced by +2
+
+8) Routing Primitives
+Problem: Draw wires as Manhattan paths with legal pixels.
+Rules:
+  - Blue for wires/crossings; Black for branches/junctions; gates drive rightward.
+Done when: A function routes (sx,sy) → (tx,ty) using HV/VH paths, detouring if blocked.
+Pitfalls: Running through gates, missing branch pixels at bends.
+
+9) Gate Stamping
+Problem: Place colored gate pixel and connect inputs/outputs.
+Done when:
+  - NOT (red): 2 non-white neighbors and a right neighbor.
+  - AND/OR (yellow/green): 3 non-white neighbors and a right neighbor.
+Pitfalls: Extra neighbors → invalid gate.
+
+10) Border Rules
+Problem: Enforce left/right border specs.
+Done when:
+  - Used in[j] → (0, 2j) is blue and drives right.
+  - Used out[k] → (w-1, 2k) is blue and driven from the left.
+  - All other border pixels white (esp. odd rows).
+Pitfalls: Off-by-one rows; writing on odd rows.
+
+11) Validation Pass
+Problem: Prove the picture is legal before writing.
+Checks:
+  - Gate neighbor counts + right neighbor requirement.
+  - Border even/odd correctness and colors.
+  - Each non-white in-edge has exactly one driver (no shorts/floats).
+Done when: Bad pictures rejected with clear messages.
+
+12) PPM Writer
+Problem: Emit P3 ASCII PPM with exact RGB triples.
+Done when: Viewers open it; colors match your grid.
+
+13) Test Cases
+Happy path:
+  - XOR, simple NOT/AND/OR chains, multi-output.
+Syntax errors:
+  - Missing ;, bad brackets, and/or with 1 arg.
+Semantic errors:
+  - Use-before-define, reassignments, target used in self-assign.
+Electrical errors:
+  - Forced collisions, wrong border pixels, extra neighbors.
+
+14) Ergonomics & Robustness
+Problem: Helpful errors, stable layouts, repeatable output.
+Done when: Precise messages (line/col) and no crashes.
+
+15) Optional Improvements
+  - Row compaction (reuse freed tracks)
+  - Smarter router (A* with bend penalties)
+  - P6 binary PPM output
+  - Visual ASCII debug dump
