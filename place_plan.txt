@@ -1,16 +1,16 @@
 PLACE Language Implementation Plan
 -----------------------------------
 
-1) Read & Validate CLI
+1) Read & Validate CLI - DONE
 Problem: Parse args, read file, write file, exit codes.
 Done when: python3 place.py a.txt a.ppm prints friendly errors or produces a file.
 
-2) Lexing (Tokens)
+2) Lexing (Tokens) - DONE
 Problem: Turn text into tokens (identifiers, numbers, in/out, not/and/or, ()[]=;, comments).
 Done when: A line like x = in[0] or in[1]; # hi yields the correct token sequence.
 Pitfalls: Comments, negative indices (reject), weird characters.
 
-3) Parsing (AST)
+3) Parsing (AST) - DONE
 Problem: Build an AST from tokens with explicit syntax (no precedence surprises).
 Done when:
   - Valid: a = in[0] or in[1]; parses.
@@ -18,7 +18,7 @@ Done when:
 Pitfalls: Parentheses, chaining and/or.
 Rule: Parenthesize subexpressions that are not atomic.
 
-4) Semantic Checks
+4) Semantic Checks - DONE
 Problem: Enforce language rules.
 Done when:
   - Using a name before it’s defined → error.
@@ -27,17 +27,26 @@ Done when:
 Pitfalls: Shadowing, duplicate outputs.
 Note: Using out[k] on RHS is allowed *after* it’s defined.
 
-5) Netlist Build (DAG)
+5) Netlist Build (DAG) - DONE
 Problem: Convert AST to nodes (IN, NOT, AND, OR, OUT) and edges (dependencies).
 Done when: Each assignment adds nodes/edges; inputs/outputs tracked.
 Pitfalls: Aliases (can skip WIRE nodes and forward references).
 
-6) Topological Order
+
+INTEGRATED IN PLACE.PY
+
+
+6) Topological Order - DONE
 Problem: Order nodes so data flows left→right; detect cycles.
 Done when: Kahn/DFS returns an ordering for all nodes.
 Note: Cycles shouldn’t exist if semantics are correct.
 
-7) Placement
+
+INTEGRATED IN PLACE.PY
+
+
+
+7) Placement - DONE
 Problem: Choose (x,y) for each node.
   - Inputs at left border (even rows)
   - Outputs at right border (even rows)
@@ -46,6 +55,11 @@ Done when: Every node has a unique coordinate; I/O on even rows.
 Strategy:
   - Columns by topo-level (x = 2 + 3*level)
   - Rows spaced by +2
+
+
+INTEGRATED IN PLACE.PY
+
+
 
 8) Routing Primitives
 Problem: Draw wires as Manhattan paths with legal pixels.
