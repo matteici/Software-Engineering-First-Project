@@ -1,0 +1,3 @@
+# 2 1 2
+Dr=((((not in[0]) or (in[0] or in[0] or in[1]) or (in[0] or in[0] or in[1] or in[0] or in[1] or in[1]) or in[ 1] or in[1]) or ((in[1] and in[1] and in[1] and in[1] and in[1] and in[1] and in[1]) or (not in[0]) or (not in[0]))) and (not in[0]) and in[0] and in[0] and in[0] and (((not in[1]) and (in[0] or in[0] or in[1] or in[0] or in[0] or in[0] or in[1]) and (not in[0]) and (not in[1]) and (in[1] and in [1]) and in[0]) or in[0] or ((not in[0]) or (in[0] and in[1] and in[1] and in[0] and in[1] and in[0] and in[0]) or (in[0] or in[0] or in[0] or in[ 1] or in[1] or in[1] or in[0]) or (in[0] or in[1] or in[1]) or in[0]) or in[1] or (not in[0])));
+P=in[0];

@@ -161,6 +161,7 @@ class NetlistBuilder:
         )
 
     # ---------- expression emission ----------
+        # ---------- expression emission ----------
     def _emit_expr(self, e: Any) -> int:
         if isinstance(e, InRef):
             self.inputs_used.add(e.index)
@@ -170,11 +171,22 @@ class NetlistBuilder:
             try:
                 return self.name_to_nid[e.name]
             except KeyError as ex:
-                raise KeyError(f"Identifier '{e.name}' not defined before use.") from ex
+                raise KeyError(
+                    f"Identifier '{e.name}' not defined before use."
+                ) from ex
+
+        if isinstance(e, OutRef):
+            try:
+                # RHS out[k] must refer to an already-assigned OUT node.
+                return self.out_index_to_nid[e.index]
+            except KeyError as ex:
+                raise KeyError(
+                    f"Output 'out[{e.index}]' not defined before use."
+                ) from ex
 
         if isinstance(e, Not):
             c = self._emit_expr(e.expr)
-            n = self._add_node('NOT')
+            n = self._add_node("NOT")
             self._connect(c, n)
             return n
 
@@ -182,7 +194,7 @@ class NetlistBuilder:
             if len(e.exprs) < 2:
                 raise ValueError("AND must have 2+ operands.")
             inputs = [self._emit_expr(x) for x in e.exprs]
-            n = self._add_node('AND')
+            n = self._add_node("AND")
             for src in inputs:
                 self._connect(src, n)
             return n
@@ -191,10 +203,15 @@ class NetlistBuilder:
             if len(e.exprs) < 2:
                 raise ValueError("OR must have 2+ operands.")
             inputs = [self._emit_expr(x) for x in e.exprs]
-            n = self._add_node('OR')
+            n = self._add_node("OR")
             for src in inputs:
                 self._connect(src, n)
             return n
+
+        # Allow parenthesized expressions to be passed through unchanged by parsers.
+        # If a parser wraps parentheses in a dedicated class, adapt here.
+        raise TypeError(f"Unsupported expression type: {type(e)}")
+
 
         # Allow parenthesized expressions to be passed through unchanged by parsers.
         # If a parser wraps parentheses in a dedicated class, adapt here.

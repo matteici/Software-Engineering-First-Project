@@ -1,0 +1,5 @@
+
+out[0] = in[2] and ((not in[2]) or (in[3] or (in[0] and (not in[0])))) and ((not in[1]) or ((not in[0]) 
+and (in[2] or in[3]) and (in[0] or (not in[3]))));
+
+

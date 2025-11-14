@@ -1,0 +1,9 @@
+
+out[0] = (in[6] or ((in[0] or in[3] or (not in[8])) and (in[1] or in[7] or in[8]))) and ((not in[2]) or ((in[3] 
+or in[5] or in[9]) and ((not in[0]) or in[8]))) and (in[2] or ((in[1] or (((not in[0]) or in[9]) and 
+in[7])) and (in[5] or (not in[9])) and (in[3] or in[4] or (not in[6]) or (not in[8])))) and ((not 
+in[4]) or ((in[3] or (in[5] and in[1])) and (in[7] or in[9]) and (in[2] or (not in[8])) and (not in[8]))) 
+and ((not in[7]) or (((not in[1]) or ((not in[2]) and ((not in[3]) or in[5]))) and in[6] and (in[3] 
+or (not in[5]) or (not in[9])) and (in[0] or in[2] or in[5]))) and in[7] and (in[4] or in[8]);
+
+

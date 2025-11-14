@@ -1,0 +1,5 @@
+x = (in[0] and (not in[1])) or in[2];
+y = (in[2] or x) and in[0];
+out[0] = x and y;
+out[1] = x or y;
+

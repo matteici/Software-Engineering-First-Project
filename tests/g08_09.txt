@@ -1,0 +1,15 @@
+
+f2 = in[4] or in[5];
+f1 = (not in[5]) or in[6];
+f0 = in[2] or (not in[5]);
+out[0] = (in[4] or (in[5] and f0)) and in[6] and ((not in[0]) or (((not in[7]) or in[6]) and ((not in[2]) 
+or in[3] or (not in[5])))) and in[7] and ((not in[3]) or (((not in[4]) or f1) and ((not in[1]) or 
+in[5]) and ((not in[0]) or ((in[7] or ((in[1] or (not in[2]) or (not in[5]) or (not in[6])) and (in[2] 
+or in[4] or in[5] or in[6]))) and ((not in[4]) or (in[2] or ((in[7] or ((in[1] or (not in[6])) and f1)) 
+and (not in[7])))) and ((not in[1]) or (((not in[6]) or (in[7] or (f0 and f2))) and ((not 
+in[2]) or (((not in[5]) or ((in[4] or in[7]) and ((not in[4]) or in[6]))) and (in[5] or (not in[6]) or 
+in[7]))) and f2)) and in[5])) and (in[0] or (not in[7])))) and (not in[2]) and (not in[1]) and 
+(not in[0]) and (not in[5]) and (not in[0]) and (not in[1]) and (not in[2]) and (not in[2]) and 
+(not in[5]) and (not in[2]) and (not in[0]) and (not in[1]);
+
+

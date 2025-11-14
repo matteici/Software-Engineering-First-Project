@@ -27,11 +27,12 @@ class Grid:
     def set(self, x: int, y: int, c: Tuple[int,int,int]) -> None:
         self.px[x, y] = c
     def neighbors4(self, x: int, y: int):
-        # horizontal moves first (helps long trunks), then vertical
-        for dx, dy in ((1,0),(-1,0),(0,1),(0,-1)):
+        # up, down, right
+        for dx, dy in ((0,-1), (0,1), (1,0)):
             xx, yy = x+dx, y+dy
             if self.inside(xx, yy):
                 yield (xx, yy)
+                
 
 def deg_and_axes(grid: Grid, x: int, y: int):
     """Degree considering only wire pixels (BLUE/BLACK)."""
@@ -132,45 +133,110 @@ def _route_via(grid: Grid,
     if not p2:
         return None
     return p1 + p2[1:]  # avoid duplicating 'via'
-
-def route(grid: Grid,
-          start: Tuple[int,int],
-          goal: Tuple[int,int],
-          occupied: Optional[Set[Tuple[int,int]]] = None,
-          prefer_soft_halo: bool = True) -> bool:
+'''
+def route(
+    grid: Grid,
+    start: Tuple[int, int],
+    goal: Tuple[int, int],
+    occupied: Optional[Set[Tuple[int,int]]] = None,
+    prefer_soft_halo: bool = False,
+) -> bool:
     """
-    Route with a two-stage soft keep-out strategy:
-      1) Try with (blocked U halo)   -> preserves whitespace when possible.
-      2) Fallback with (blocked only) -> guarantees connectivity if congested.
-    Also tries HV/VH via the orthogonal bend points if direct BFS fails.
-    """
-    blocked_base = set(occupied or [])
-    halo = _wire_halo(grid) if prefer_soft_halo else set()
+    Route a single net from start to goal.
 
-    def try_all(blocked: Set[Tuple[int,int]]) -> Optional[List[Tuple[int,int]]]:
-        # direct BFS
-        p = bfs_route(grid, start, goal, blocked)
-        if p is not None:
-            return p
-        # HV then VH via orthogonal bend points
+    - `occupied` are permanent blocks (gate centers, etc.).
+    - Existing wires (BLUE/BLACK) are ALSO treated as blocked so that
+      one line = one signal (no sharing).
+    - If `prefer_soft_halo` is True, we also block *adjacent* pixels
+      around existing wires (soft keep-out) to create whitespace.
+    """
+    blocked: Set[Tuple[int,int]] = set(occupied or [])
+
+    # 1) Treat existing wires as blocked so later nets cannot reuse them.
+    wire_pixels: Set[Tuple[int,int]] = set()
+    for y in range(grid.h):
+        for x in range(grid.w):
+            c = grid.get(x, y)
+            if c == BLUE or c == BLACK:
+                wire_pixels.add((x, y))
+                blocked.add((x, y))
+                if prefer_soft_halo:
+                    # Add a 4-neighbor halo around wires (only over WHITE pixels)
+                    for dx, dy in ((1,0),(-1,0),(0,1),(0,-1)):
+                        nx, ny = x + dx, y + dy
+                        if grid.inside(nx, ny) and grid.get(nx, ny) == WHITE:
+                            blocked.add((nx, ny))
+
+    # 2) Don't block the actual start/goal pixels
+    blocked.discard(start)
+    blocked.discard(goal)
+
+    # 3) Try direct BFS
+    path = bfs_route(grid, start, goal, blocked)
+
+    # 4) Fallback: HV/VH via Manhattan bend points
+    if path is None:
         (sx, sy), (tx, ty) = start, goal
-        for via in ((sx, ty), (tx, sy)):
+        for via in ((sx, ty), (tx, sy)):  # HV then VH
             cand = _route_via(grid, start, goal, via, blocked)
             if cand:
-                return cand
-        return None
-
-    # Stage 1: with halo
-    path = try_all(blocked_base | halo)
-    # Stage 2: without halo (relax, but still avoid gates/occupied)
-    if path is None:
-        path = try_all(blocked_base)
+                path = cand
+                break
 
     if path is None:
         return False
 
     draw_wire(grid, path)
     return True
+'''
+
+def route(grid: Grid,
+          start: Tuple[int, int],
+          goal: Tuple[int, int],
+          occupied: Optional[Set[Tuple[int,int]]] = None) -> bool:
+    """
+    Route a single net from start to goal.
+
+    - `occupied`: permanent blocks (gate centers, etc.)
+    - We ADD a halo around existing wires (BLUE/BLACK):
+        every WHITE pixel 4-neighbor to a wire becomes blocked,
+        so there is always at least one white cell around each wire.
+    """
+    # Start from externally-occupied pixels (gate centers, etc.)
+    blocked: Set[Tuple[int,int]] = set(occupied or [])
+
+    # --- HALO AROUND EXISTING WIRES ---
+    for y in range(grid.h):
+        for x in range(grid.w):
+            c = grid.get(x, y)
+            if c == BLUE or c == BLACK:
+                # For each wire pixel, block its 4-neighbors if they are WHITE
+                for dx, dy in ((1,0), (-1,0), (0,1), (0,-1)):
+                    nx, ny = x + dx, y + dy
+                    if grid.inside(nx, ny) and grid.get(nx, ny) == WHITE:
+                        blocked.add((nx, ny))
+    # Don't block the pins themselves
+    blocked.discard(start)
+    blocked.discard(goal)
+
+    # 1) direct BFS
+    path = bfs_route(grid, start, goal, blocked)
+
+    # 2) fallback: try HV then VH via the two Manhattan bend points
+    if path is None:
+        (sx, sy), (tx, ty) = start, goal
+        for via in ((sx, ty), (tx, sy)):  # HV then VH
+            cand = _route_via(grid, start, goal, via, blocked)
+            if cand:
+                path = cand
+                break
+
+    if path is None:
+        return False
+
+    draw_wire(grid, path)
+    return True
+
 
 # ---------------- Demo helpers (independent checker uses these) ------------
 

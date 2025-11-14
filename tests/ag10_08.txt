@@ -1,0 +1,117 @@
+
+f18 = in[0] or in[9];
+f17 = in[3] or in[9];
+f16 = in[4] or in[9];
+f15 = in[7] or in[8];
+f14 = in[0] or in[5] or in[6];
+f13 = in[7] or (not in[9]);
+f12 = (not in[0]) or in[1];
+f11 = (not in[7]) or in[9];
+f10 = (not in[5]) or in[9];
+f9 = in[1] or (not in[5]);
+f8 = (not in[0]) or in[7];
+f7 = (not in[9]) or in[0];
+f6 = in[6] or in[7] or in[9];
+f5 = in[0] or (not in[1]) or in[5];
+f4 = in[6] or in[9];
+f3 = in[0] or in[6];
+f2 = in[1] or (not in[9]);
+f1 = in[7] or in[9];
+f0 = in[8] or in[9];
+out[0] = in[7] and in[1] and in[9] and in[5] and in[6] and in[0] and ((not in[0]) or ((in[6] or ((in[2] or ((in[3] 
+or (in[4] or (f2 and ((not in[1]) or in[8] or in[9])))) and f0)) and in[1])) and (in[5] or ((in[6] 
+or (((not in[1]) or (not in[9])) and f15 and (in[1] or in[4] or in[9]))) and (in[2] or (((not in[7]) 
+or (((not in[1]) or in[3] or in[8] or in[9]) and in[1])) and (in[7] or (f0 and (not in[9]))))) and 
+in[1])))) and ((not in[3]) or ((in[1] or ((in[6] or ((in[0] or (in[5] or (in[7] or (in[9] and (in[8] or 
+(not in[9])))))) and f0)) and in[2])) and ((not in[1]) or ((in[2] or (f6 and (not in[5]))) and 
+(in[5] or (((not in[6]) or in[7] or in[8] or (not in[9])) and in[6])))) and (in[4] or (((not in[5]) or 
+(in[6] or (in[8] or (in[9] or ((in[0] or (not in[7])) and ((not in[0]) or in[2] or in[7])))))) and (in[5] 
+or ((in[0] or (in[1] or ((in[6] or (not in[7]) or in[8] or (not in[9])) and in[9]))) and (in[2] or in[7]) 
+and ((not in[0]) or (not in[1])) and (not in[0]))) and ((not in[6]) or ((in[1] or ((in[5] or (f7 
+and ((not in[0]) or (not in[7]) or in[8] or in[9]))) and (in[2] or (not in[5]) or in[7] or in[8] or 
+in[9]))) and (in[0] or (not in[5]) or in[8] or in[9]))) and (in[0] or in[2] or in[6] or in[7] or in[8]) and 
+(in[1] or in[9]))) and (not in[9]) and ((not in[0]) or in[2] or (not in[5]) or in[6] or in[7] or in[8] or 
+in[9]))) and ((not in[8]) or ((in[2] or ((in[6] or (f5 and f16)) and (in[1] or (((not in[0]) or 
+in[5] or (not in[9])) and (in[0] or in[3] or in[4] or (not in[5]) or (not in[6])))))) and ((not in[7]) 
+or (in[4] or ((in[5] or ((in[1] or in[6] or in[9]) and (not in[6]) and (in[0] or (not in[6]) or (not 
+in[9])))) and ((not in[5]) or in[6])))) and (in[7] or (in[1] and ((not in[9]) or ((in[1] or (((not 
+in[6]) or ((in[0] or in[2]) and (in[3] or in[5]))) and (in[0] or in[3] or in[5] or in[6]))) and ((not in[0]) 
+or in[4] or in[5]))) and ((not in[1]) or ((in[0] or (((not in[5]) or (in[9] or (in[4] and (in[2] or 
+in[6])))) and (in[2] or in[3] or in[9]))) and ((not in[0]) or in[6]) and (in[2] or in[4] or (not in[6])))) 
+and (in[2] or in[5]) and f3)) and ((not in[3]) or ((in[0] or (in[4] or (in[1] and (not in[1])))) and 
+in[6] and in[2] and in[1])) and (not in[7]) and in[1] and in[6])) and ((not in[4]) or (in[6] and in[5] and 
+(in[8] or (in[7] and (in[1] or (in[9] or ((not in[5]) and (in[0] or in[2] or (not in[3]) or in[5] or 
+in[6])))) and ((not in[9]) or ((in[3] or ((in[1] or (((not in[0]) or in[5] or in[6] or in[7]) and (in[0] 
+or in[2] or (not in[5])))) and (in[0] or in[2] or in[5] or in[6] or in[7]))) and (in[0] or (not in[3]) or 
+(not in[5]) or in[6] or in[7]))) and ((not in[0]) or in[5]))) and ((not in[1]) or ((in[0] or (in[6] or 
+(in[2] and (in[3] or in[5] or in[7] or in[8] or in[9])))) and ((not in[7]) or ((in[5] or in[8]) and in[6])) 
+and ((not in[3]) or (((not in[9]) or (in[2] or (((not in[5]) or (in[6] or (f8 and in[0]))) and 
+(in[0] or in[6] or in[7] or in[8])))) and ((not in[0]) or in[5] or in[6] or in[7] or in[8] or in[9]))))) and 
+((not in[8]) or (((not in[3]) or (in[0] or (in[2] or f1))) and ((not in[9]) or ((in[7] or ((not 
+in[1]) and ((not in[0]) or in[1] or in[2] or in[3] or (not in[5])))) and (not in[3]))) and ((not in[7]) 
+or ((in[1] or ((in[0] or ((in[5] or (f4 and (in[3] or (not in[9])))) and (in[2] or (not in[3]) or 
+(not in[5])))) and (in[2] or in[3] or in[5] or in[6] or (not in[9])))) and ((not in[1]) or (((not 
+in[0]) or (in[5] or ((in[3] or in[6] or in[9]) and ((not in[3]) or (not in[9]))))) and f17 and 
+in[0])))) and ((not in[0]) or in[3] or (not in[5]) or in[9]))) and ((not in[6]) or ((in[0] or ((in[2] 
+or (not in[8]) or in[9]) and (in[1] or in[8]))) and (in[7] or ((in[3] or ((in[8] or (f9 and (in[0] or 
+in[2] or in[5] or (not in[9])))) and in[0])) and (in[1] or (not in[5]) or in[9]))) and ((not in[3]) or 
+((in[2] or ((in[1] or (in[5] or ((in[7] or (in[8] or (in[0] and in[9]))) and (not in[8])))) and (in[0] or 
+(not in[1]) or (not in[5]) or in[7] or in[9]))) and (in[0] or (not in[1]) or in[5] or in[7] or in[8] or 
+in[9]))) and ((not in[7]) or ((in[2] or (((not in[8]) or in[5]) and ((not in[5]) or in[8] or (not 
+in[9])))) and ((not in[1]) or (in[8] or ((in[0] or ((in[5] or (in[9] or (in[3] and (not in[3])))) and 
+(in[2] or (not in[5])))) and in[3]))) and (in[0] or in[1] or in[3] or in[9]))) and ((not in[0]) or ((in[2] 
+or (((not in[8]) or (in[3] or (in[5] or (f1 and f2)))) and ((not in[3]) or (in[9] or ((in[1] or 
+(not in[5]) or in[7]) and in[5]))))) and ((not in[1]) or ((in[9] or ((in[5] or ((in[2] or (not in[3]) 
+or (not in[7])) and (in[3] or in[8]))) and (in[7] or (in[8] and (in[3] or (not in[5]) or (not 
+in[8])))))) and (in[2] or in[3] or (not in[5]) or (not in[7]) or (not in[8])))) and f1 and (in[1] or 
+in[3] or in[5] or (not in[7])))))) and in[9])) and ((not in[2]) or (((not in[7]) or (((not in[1]) or 
+(f16 and f3)) and (in[0] or in[1] or (not in[6]) or in[9]))) and in[7] and (in[3] or ((in[0] or ((in[9] 
+or (((not in[1]) or (not in[5]) or in[7]) and (in[1] or in[4] or in[5] or (not in[6])))) and (in[8] or 
+(in[9] and ((not in[9]) or (in[4] or (in[7] or (((not in[1]) or in[6]) and in[1])))) and ((not in[7]) 
+or (((not in[6]) or (in[4] or (in[1] and f10))) and (in[1] or in[5] or in[6] or in[9]))))) and (not 
+in[6]))) and ((not in[0]) or ((in[7] or ((in[8] or ((in[5] or ((in[4] or ((in[1] or (in[6] and (not 
+in[6]))) and f4)) and ((not in[1]) or in[6] or in[9]))) and ((not in[1]) or (not in[5]) or (not 
+in[6]) or (not in[9])))) and (in[1] or (not in[5]) or in[6]))) and (in[1] or in[4] or (not in[5]) or 
+(not in[7]) or in[8] or in[9]))) and (in[6] or in[8]) and (in[1] or in[5] or in[9]))) and ((not in[3]) or 
+((in[7] or ((in[4] or ((in[6] or (in[8] or (((not in[0]) or (not in[9])) and f5))) and ((not in[6]) 
+or ((not in[5]) and f18)))) and f3 and f2)) and ((not in[7]) or ((in[8] or ((in[6] or ((in[5] 
+or in[9]) and (in[0] or in[1] or in[4] or (not in[9])))) and ((not in[1]) or ((in[0] or ((in[4] or in[6] 
+or in[9]) and ((not in[6]) or (not in[9])))) and (in[4] or (not in[5]) or in[6] or in[9]))) and (in[1] 
+or in[4] or (not in[5]) or (not in[6]) or in[9]))) and (in[0] or in[1] or in[4] or in[5] or (not in[9])))) 
+and (in[0] or in[5] or (not in[6]) or in[9]))) and ((not in[8]) or ((in[1] or (in[0] and ((not in[0]) 
+or in[3] or in[4] or in[5] or in[6] or (not in[9])))) and ((not in[5]) or (((not in[1]) or (in[9] or 
+((in[0] or in[4] or (not in[6]) or in[7]) and in[3]))) and (in[6] or in[7]) and f17)) and ((not in[7]) 
+or ((in[1] or (in[3] or ((in[0] or (not in[5]) or (not in[6])) and (in[4] or in[5] or in[6] or (not 
+in[9]))))) and ((not in[0]) or ((in[3] or (((not in[1]) or ((in[5] or in[6] or in[9]) and in[4])) and 
+((not in[9]) or (f9 and in[5])))) and (in[4] or in[5] or in[6]))))) and ((not in[3]) or ((in[6] or 
+((in[5] or (f11 and ((not in[0]) or in[4] or (not in[9])))) and in[1])) and ((not in[1]) or (in[5] 
+or (((not in[6]) or (in[4] or (in[7] or ((not in[9]) and (not in[0]))))) and (in[0] or in[6] or 
+in[9])))) and ((not in[5]) or ((in[4] or (((not in[9]) or ((in[1] or in[7]) and (in[0] or in[6] or (not 
+in[7])))) and (in[9] or ((in[0] or in[1] or in[6]) and (not in[6]) and ((not in[1]) or (not in[6]) or 
+in[7]))))) and ((not in[0]) or in[1] or in[7] or (not in[9])))) and (in[1] or in[7] or (not in[9])))) 
+and ((not in[1]) or in[4] or in[9]))) and ((not in[4]) or (((not in[1]) or (in[8] or (((not in[7]) 
+or (in[5] or (in[6] or ((not in[0]) and in[3])))) and (in[0] or in[3] or (not in[6]) or in[7] or in[9])))) 
+and ((not in[9]) or ((in[0] or ((in[1] or (in[8] or ((in[5] or in[6]) and in[3]))) and ((not in[1]) or 
+(in[7] or (in[3] and (in[5] or in[6] or in[8])))))) and ((not in[6]) or ((in[7] or (in[1] and ((not in[0]) 
+or (not in[1]) or in[5] or in[8]))) and (in[0] or in[5]))) and (in[1] or in[5] or in[6]))) and ((not 
+in[5]) or ((in[1] or ((in[0] or in[3] or (not in[6])) and f15)) and ((not in[7]) or ((in[3] or (in[9] 
+or ((in[0] or (not in[1])) and in[6]))) and (in[1] or (not in[6]) or in[8]))) and ((not in[0]) or 
+(in[7] or ((in[1] or ((in[6] or (not in[9])) and (in[3] or (not in[6]) or in[8]))) and ((not in[1]) or 
+in[6] or in[8] or in[9])))) and (in[3] or in[6] or in[7] or in[8] or in[9]))) and ((not in[8]) or ((in[7] or 
+(f12 and in[9])) and (in[0] or (((not in[5]) or ((not in[7]) or in[6])) and ((not in[6]) or in[7] or 
+in[9]))) and (in[3] or (((not in[1]) or (in[5] or (in[6] or (f7 and ((not in[0]) or in[9]))))) and 
+((not in[6]) or ((in[9] or ((not in[5]) and (in[0] or in[1] or (not in[7])))) and f12)) and (in[0] 
+or in[1] or in[5] or in[7] or (not in[9])) and f11)))) and ((not in[3]) or ((in[1] or (((not in[7]) 
+or (in[6] or (f10 and (in[0] or in[8] or (not in[9]))))) and ((not in[0]) or in[5] or in[7] or in[9]))) 
+and ((not in[1]) or ((in[0] or (in[5] or (in[8] or (f4 and f13)))) and ((not in[0]) or (in[8] or 
+((in[5] or (in[6] and f1)) and f6))))) and ((not in[6]) or ((in[9] or (((not in[5]) or (in[1] or 
+(f8 and (in[0] or in[8])))) and (in[0] or in[7] or in[8]))) and ((not in[7]) or ((in[1] or (in[5] or 
+(f0 and (in[0] or (not in[9]))))) and f18)))) and ((not in[8]) or ((in[1] or ((in[0] or (in[5] or 
+(in[9] and f13))) and ((not in[0]) or (not in[5]) or in[6] or in[7]))) and ((not in[1]) or (((not 
+in[9]) or (f14 and (not in[6]))) and (in[5] or (not in[6]) or in[7] or in[9]))) and ((not in[7]) or 
+((in[0] or (((not in[1]) or in[5] or in[9]) and (in[1] or in[6]))) and ((not in[0]) or ((in[1] or in[5]) 
+and ((not in[1]) or (not in[5]) or (not in[9])))) and (in[1] or in[5] or (not in[6]) or (not 
+in[9])))))) and ((not in[5]) or in[6] or (not in[9])))) and f14)) and (in[1] or in[6] or in[8]))) 
+and (not in[4]) and (not in[3]) and (not in[4]);
+
+

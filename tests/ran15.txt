@@ -1,0 +1,4 @@
+# 5 7 3
+FW=(in[1] and in[2]);
+l=(not FW);
+L=in[4];

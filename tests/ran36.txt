@@ -1,0 +1,6 @@
+# 6 2 5
+i=in[0];
+b2hD=(((not in[1]) or ((not i) or (not in[2]) or (in[3] and in[1] and i and in[2])  or (in[2] and in[0] and in[2] and in[5] and in[1]) or (not in[5]) or in[0] or (in[1] and in[2] and in[3] and i and in[3] and in[1] and in[5] and in[4] and in[5] and in[0] and in[0] and in[4] and in[4]) or (in[3] and in[4] and in[3] and in[3] and in[1])) or ((in[3] and in[4] and i and in[2]) or (in[0] and in [5] and in[3] and i) or (in[0] and i and in[0] and in[5]) or (in[4] or in[3] or in[0]) or (not in[4]) or (in[5] or i or in[2] or in[0] or in [5] or in[0])  or (in[4] or in[5] or i or in[1] or in[3]) or ( i and in[5])) or (in[1] and in[4] and (not in[0]) and (in[0] and in[0] and i and in[0] and i and in[4] and in[0] and in[5] and in[5]  and in[5] and in[2]))) and in[1]);
+qk=( (not in[3]) or in[4] or in[5] or in[ 2] or in[4] or (not in[1]));
+out[0]=(not b2hD);
+YG=out[0];
